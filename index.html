@@ -13,7 +13,7 @@
 	<title>TTPS</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
-	<link rel="stylesheet" href="css/theme/blood.css" id="theme">
+	<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -31,27 +31,27 @@
 	<div class="reveal">
 		<div class="slides">
 			<section>
-				<h4>Técnicas y Estrategias para la Resolución de Problemas</h4>
+				<h3>Técnicas y Estrategias para la Resolución de Problemas</h3>
 			</section>
 			<section>
 				<section data-autoslide="1500">
-					<h3>Presentación</h3>
+					<h2>Presentación</h2>
 				</section>
 				<section>
 					<p><strong>Alumno</strong></p>
 					<p><em>Ulises Jeremias Cornejo Fandos</em></p>
 				</section>
 				<section>
-					<h5>Ejercicio propuesto</h5>
+					<h4>Ejercicio propuesto</h4>
 					<p class="fragment grow"><strong>ACM Contest and Blackout</strong></p>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h3>Conceptos necesarios</h3>
+					<h2>Conceptos necesarios</h2>
 				</section>
 				<section>
-					<h4>Grafo</h4>
+					<h3>Grafo</h3>
 					<p>Un grafo \(G\) es un par ordenado \(G = (V, E)\) donde:</p>
 					<ul>
 						<li class="fragment fade-up">
@@ -63,21 +63,21 @@
 					</ul>
 				</section>
 				<section>
-					<h4>Grafo no dirigido</h4>
+					<h3>Grafo no dirigido</h3>
 					<p>Un <em>grafo no dirigido</em> es un grafo \(G = (V, E)\) donde:</p>
 					<p class="fragment fade-up">\[ V \neq \emptyset \]</p>
 					<p class="fragment fade-up">\[ E \subseteq \{ x \in P(V) : |x| = 2 \} \] <small class="fragment grow">es un conjunto de pares no ordenados de elementos de \(V\)</small></p>
 				</section>
 				<section>
-					<h4>Grafo conexo</h4>
-					<p>En teoría de grafos, un grafo \(G\) se dice conexo si, para cualquier par de vértices \[ u,v \in G \], existe al menos una trayectoria (una sucesión de vértices adyacentes que no repita vértices) de u a v.</p>
+					<h3>Grafo conexo</h3>
+					<p>En teoría de grafos, un grafo \(G\) se dice conexo si, para cualquier par de vértices \( u,v \in G \), existe al menos una trayectoria (una sucesión de vértices adyacentes que no repita vértices) de u a v.</p>
 				</section>
 				<section>
-					<h4>Grafo etiquetado</h4>
+					<h3>Grafo etiquetado</h3>
 					<p>En matemáticas, en la disciplina de teoría de grafos, un grafo etiquetado es la asignación de etiquetas, tradicionalmente representada mediante enteros, a las aristas o vértices, o ambos, de un grafo.</p>
 				</section>
 				<section>
-					<h4>Grafo ponderado</h4>
+					<h3>Grafo ponderado</h3>
 					<p>Formalmente, dado un grafo \(G\), un vértice etiquetado es una función que hace corresponder vértices de G a un conjunto de etiquetas. Un grafo con tal función definida es llamado grafo de vértices etiquetados. De la misma manera, una arista etiquetada
 						es una función de asignación de aristas de G tal conjunto de «etiquetas». En este caso, G es llamado como grafo de aristas etiquetadas. Cuando las etiquetas de las aristas pertenecen a un conjunto ordenado ('es decir, los números reales), ésta puede
 						ser llamada como grafo ponderado.</p>
@@ -85,7 +85,7 @@
 			</section>
 			<section>
 				<section>
-					<h3>ACM Contest and Blackout</h3>
+					<h2>ACM Contest and Blackout</h2>
 				</section>
 				<section>
 					<p>Con el fin de preparar el "Primer Concurso Escolar de la Asociación Nacional de Maquinaria Informática" (en 20 ??) el alcalde de la ciudad decidió para proporcionar a todas las escuelas una fuente confiable de poder. (El alcalde tiene realmente miedo
@@ -98,37 +98,164 @@
 			</section>
 			<section>
 				<section>
-					<h3>Input</h3>
+					<h2>Input</h2>
 				</section>
 				<section>
-					<p>La entrada comienza con el <span class="fragment highlight-blue">número de casos de prueba, <em>T (1
-						< T < 15)</em></span> en una línea. Luego, siguen los T casos de prueba. La primera línea de cada caso de prueba contiene dos números, que están separados por un espacio, <span class="fragment highlight-red"><em>N (3
-						< N < 100)</em> el número de escuelas en la ciudad</span>, y <span class="fragment highlight-green">M el número de conexiones posibles entre ellos</span>. Las siguientes líneas M contienen tres números Ai, Bi, Ci, donde Ci es el costo de la conexión
-						(1
-						< Ci < 300) entre las escuelas Ai y Bi. Las escuelas están numeradas con números enteros en el rango de 1 a N.</p>
+					<p>La entrada comienza con el <span class="fragment highlight-blue">número de casos de prueba, \( T (1
+						< T < 15) \)</span> en una línea. Luego, siguen los T casos de prueba. La primera línea de cada caso de prueba contiene dos números, que están separados por un espacio, <span class="fragment highlight-red">\( N (3
+						< N < 100) \) el número de escuelas en la ciudad</span>, y <span class="fragment highlight-red">M el número de conexiones posibles entre ellos</span>. Las siguientes líneas M contienen tres números \(A_i\), \(B_i\), \(C_i\), donde \(C_i\) es el
+						costo de la conexión \( (1
+						< C_i < 300) \) entre las escuelas \(A_i\) y \(B_i\). Las escuelas están numeradas con números enteros en el rango de 1 a N.</p>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h3>Output</h3>
+					<h2>Output</h2>
 				</section>
 				<section>
 					<p>Para cada caso de prueba, <span class="fragment highlight-blue">imprima solo una línea de salida</span>. Esta línea debe contener dos números separados por un solo espacio: el costo de dos de los planes de conexión más económicos. Deje S1 ser el
 						costo más barato y S2 el próximo costo más barato. Es importante que, S1 = S2 si y solo si hay dos planes más baratos, de lo contrario S1
-						< S2. <span class="fragment highlight-green">Puede suponer que siempre es posible encontrar los costos S1 y S2.</span>
+						< S2. <span class="fragment highlight-red">Puede suponer que siempre es posible encontrar los costos S1 y S2.</span>
 					</p>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h3>Análisis</h3>
+					<h2>Análisis</h2>
 				</section>
 				<section>
-
+					<p>Podemos plantear la solución del problema utilizando grafos, pudiendo ser el conjunto de vertices las escuelas y el costo de la conexión entre dos escuelas el peso de las aristas.</p>
+				</section>
+				<section>
+					<p>Dado un grafo \( G = (V, E) \) no dirigido, pesado y conexo, se debe seleccionar el subconjunto de aristas \( Eꞌ \subset E \), de manera que el grafo \(G\) siga estando conectado y el <span class="fragment highlight-red">peso total de las aristas seleccionadas sea mínimo</span>.</p>
+				</section>
+				<section>
+					<p>Luego, el ejercicio se resuelve buscando un <span class="fragment highlight-red">Arbol de Expansión Mínima</span> en el grafo de conexiones.</p>
+				</section>
+				<section>
+					<p>Agregando complejidad al problema, el mismo nos pide los dos planes con menos costo. Veremos como resolver esto más adelante.</p>
 				</section>
 			</section>
 			<section>
-				<h3>Solución</h3>
+				<section>
+					<h2>Arbol de Expansión Mínima</h2>
+				</section>
+				<section>
+					<p>Para que se cumpla el criterio de conectividad se necesitan <span class="fragment highlight-red">V - 1 aristas que abarquen todos los vértices de \(G\)</span></p>
+				</section>
+				<section>
+					<p>Para resolver esta cuestión deberiamos buscar algún algoritmo que plantee la menor cantidad de dificultades. Se necesitaria algun algoritmo voraz que me permita todo lo anteriormente mencionado.</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Algoritmo de Kruskal</h3>
+				</section>
+				<section>
+					<p>El algoritmo de kruskal es un algoritmo de la teoría de grafos que permite encontrar un árbol recubridor mínimo en un grafo conexo y ponderado. Es decir, busca un subconjunto de aristas que, formando un árbol, incluyen todos los vértices y donde
+						el valor de la suma de todas las aristas del árbol es el mínimo. Si el grafo no es conexo, entonces busca un bosque expandido mínimo (un árbol expandido mínimo para cada componente conexa).</p>
+				</section>
+				<section>
+					<p>Algoritmo de Kruskal</p>
+					<ul>
+						<li class="fragment fade-up">
+							<p>Ordena las \(E\) aristas en orden no decreciente según el peso.</p>
+						</li>
+						<li class="fragment fade-up">
+							<p>Trata de agregar cada arista en el MST en orden, si no forma un ciclo.</p>
+							<ul>
+								<li class="fragment fade-up">Utiliza UFDS</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Pseudo-código</h2>
+					<pre><code class="cpp hljs" data-trim contenteditable>
+						function kruskal(G)
+							for v in V[G] do
+								new Set C(v) ← {v}.
+
+							new heap Q containing all the edges of G, sorting by weight.
+							define a tree MST ← Ø
+
+							// n is the total number of vertices
+							while MST has less than n-1 edges and  Q is not empty do
+								(u,v) ← Q.pop()
+								// prevents cycles in MST. Add (u, v) if u and v are different components in the set.
+								// Notice that C(u) returns the component to which u belongs.
+								if C(v) ≠ C(u) then
+									push back (v,u) on MST.
+									merge C(v) and C(u) in the set
+
+							return MST
+					</code></pre>
+				</section>
+				<section>
+					<h3>Orden de ejecución</h3>
+					<p>O(ordenar las aristas + tratar de agregar cada arista x costo de las operaciones de UFDS)</p>
+				</section>
+				<section>
+					<p>\[ O(E \space log \space E \space + E \space (≈1)) \]</p>
+					<p>\[ => O(E \space log \space E) \]</p>
+					<p>\[ => O(E \space log \space V2 ) \]</p>
+					<p>\[ => O(2 \space E \space log \space V) \]</p>
+					<p>\[ => O(E \space log \space V) \]</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Union Find Disjoint Set</h2>
+				</section>
+				<section>
+					<p>Con el fin de manejar conjuntos disjuntos, creamos una estructura la cual permita realizar operaciones de búsqueda y unión de forma eficiente. Lo utilizamos en este problema para saber si un vértice está en la misma componente que otro.</p>
+				</section>
+				<section>
+					<h3>Make Set</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+						function MakeSet(x)
+							if x is not already present:
+								add x to the disjoint-set tree
+								x.parent := x
+								x.rank   := 0
+					</code></pre>
+					<p class="fragment fade-up">Orden de ejecución: \(O(1)\)</p>
+				</section>
+				<section>
+					<h3>Find</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+						function Find(x)
+							if x.parent != x
+								x.parent := Find(x.parent)
+							return x.parent
+					</code></pre>
+					<p class="fragment fade-up">Orden de ejecución: \(O(1)\)</p>
+				</section>
+				<section>
+					<h3>Union</h3>
+					<pre><code class="hljs" data-trim contenteditable>
+						function Union(x, y)
+							xRoot := Find(x)
+							yRoot := Find(y)
+
+							// x and y are already in the same set
+							if xRoot == yRoot
+								return
+
+							// x and y are not in same set, so we merge them
+							if xRoot.rank < yRoot.rank
+								xRoot.parent := yRoot
+							else if xRoot.rank > yRoot.rank
+								yRoot.parent := xRoot
+							else
+								//Arbitrarily make one root the new parent
+								yRoot.parent := xRoot
+								xRoot.rank   := xRoot.rank + 1
+					</code></pre>
+				</section>
+			</section>
+			<section>
+				<h2>Solución</h2>
 			</section>
 		</div>
 	</div>
