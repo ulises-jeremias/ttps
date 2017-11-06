@@ -16,8 +16,6 @@
 	<link rel="stylesheet" href="css/theme/blood.css" id="theme">
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
-	<link rel="stylesheet" href="css/reveal-ck.css">
-	<link rel="stylesheet" href="css/custom.css">
 
 	<!-- Printing and PDF exports -->
 	<script>
@@ -45,7 +43,7 @@
 				</section>
 				<section>
 					<h5>Ejercicio propuesto</h5>
-					<strong>ACM Contest and Blackout</strong>
+					<p class="fragment grow"><strong>ACM Contest and Blackout</strong></p>
 				</section>
 			</section>
 			<section>
@@ -54,19 +52,35 @@
 				</section>
 				<section>
 					<h4>Grafo</h4>
-					<p>Un grafo <em>G</em> es un par ordenado <em>G = (V, E)</em> donde:</p>
+					<p>Un grafo \(G\) es un par ordenado \(G = (V, E)\) donde:</p>
 					<ul>
-						<li>
-							<p><em>V</em> es un conjunto de vértices <em>ó nodos</em></p>
+						<li class="fragment fade-up">
+							<p>\(V\) es un conjunto de vértices <em>ó nodos</em></p>
 						</li>
-						<li class="fragment">
-							<p><em>E</em> es un conjunto de aristas <em>ó arcos</em> <small class="fragment">Permiten representar relaciones binarias entre elementos de V.</small></p>
+						<li class="fragment fade-up">
+							<p>\(E\) es un conjunto de aristas <em>ó arcos</em> <small class="fragment grow">Permiten representar relaciones binarias entre elementos de \(V\).</small></p>
 						</li>
 					</ul>
 				</section>
 				<section>
-					<h4>Inserte concepto aquí</h4>
-					<p>Inserte definicion aqui :v</p>
+					<h4>Grafo no dirigido</h4>
+					<p>Un <em>grafo no dirigido</em> es un grafo \(G = (V, E)\) donde:</p>
+					<p class="fragment fade-up">\[ V \neq \emptyset \]</p>
+					<p class="fragment fade-up">\[ E \subseteq \{ x \in P(V) : |x| = 2 \} \] <small class="fragment grow">es un conjunto de pares no ordenados de elementos de \(V\)</small></p>
+				</section>
+				<section>
+					<h4>Grafo conexo</h4>
+					<p>En teoría de grafos, un grafo \(G\) se dice conexo si, para cualquier par de vértices \[ u,v \in G \], existe al menos una trayectoria (una sucesión de vértices adyacentes que no repita vértices) de u a v.</p>
+				</section>
+				<section>
+					<h4>Grafo etiquetado</h4>
+					<p>En matemáticas, en la disciplina de teoría de grafos, un grafo etiquetado es la asignación de etiquetas, tradicionalmente representada mediante enteros, a las aristas o vértices, o ambos, de un grafo.</p>
+				</section>
+				<section>
+					<h4>Grafo ponderado</h4>
+					<p>Formalmente, dado un grafo \(G\), un vértice etiquetado es una función que hace corresponder vértices de G a un conjunto de etiquetas. Un grafo con tal función definida es llamado grafo de vértices etiquetados. De la misma manera, una arista etiquetada
+						es una función de asignación de aristas de G tal conjunto de «etiquetas». En este caso, G es llamado como grafo de aristas etiquetadas. Cuando las etiquetas de las aristas pertenecen a un conjunto ordenado ('es decir, los números reales), ésta puede
+						ser llamada como grafo ponderado.</p>
 				</section>
 			</section>
 			<section>
@@ -105,6 +119,17 @@
 					</p>
 				</section>
 			</section>
+			<section>
+				<section>
+					<h3>Análisis</h3>
+				</section>
+				<section>
+
+				</section>
+			</section>
+			<section>
+				<h3>Solución</h3>
+			</section>
 		</div>
 	</div>
 
@@ -112,10 +137,15 @@
 	<script src="js/reveal.js"></script>
 
 	<script>
-		// More info about config & dependencies:
-		// - https://github.com/hakimel/reveal.js#configuration
-		// - https://github.com/hakimel/reveal.js#dependencies
+		// More info https://github.com/hakimel/reveal.js#configuration
 		Reveal.initialize({
+			history: true,
+			transition: 'convex',
+			math: {
+				// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+				config: 'TeX-AMS_HTML-full'
+			},
+			// More info https://github.com/hakimel/reveal.js#dependencies
 			dependencies: [{
 					src: 'plugin/markdown/marked.js'
 				},
@@ -132,10 +162,18 @@
 					callback: function() {
 						hljs.initHighlightingOnLoad();
 					}
+				},
+				{
+					src: 'lib/js/classList.js'
+				},
+				{
+					src: 'plugin/math/math.js',
+					async: true
 				}
 			]
 		});
 	</script>
+
 </body>
 
 </html>
