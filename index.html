@@ -197,10 +197,10 @@
 				</section>
 				<section>
 					<p>\[ O(E \space log \space E \space + E \space (≈1)) \]</p>
-					<p>\[ => O(E \space log \space E) \]</p>
-					<p>\[ => O(E \space log \space V2 ) \]</p>
-					<p>\[ => O(2 \space E \space log \space V) \]</p>
-					<p>\[ => O(E \space log \space V) \]</p>
+					<p>\[ \Rightarrow O(E \space log \space E) \]</p>
+					<p>\[ \Rightarrow O(E \space log \space V2 ) \]</p>
+					<p>\[ \Rightarrow O(2 \space E \space log \space V) \]</p>
+					<p>\[ \Rightarrow O(E \space log \space V) \]</p>
 				</section>
 			</section>
 			<section>
@@ -255,7 +255,224 @@
 				</section>
 			</section>
 			<section>
-				<h2>Solución</h2>
+				<section>
+					<h2>Segundo mejor árbol de expansión</h2>
+				</section>
+				<section>
+					<p>En caso en que no funcione el MST, podemos buscar el segundo mejor.</p>
+					<ul>
+						<li class="fragment fade-up">
+							<p>Ordenar las aristas <span class="fragment fade-left">\(\leftarrow O(E \space log \space V)\)</span></p>
+						</li>
+						<li class="fragment fade-up">
+							<p>Buscar el MST usando Kruskal <span class="fragment fade-left">\(\leftarrow O(E)\)</span></p>
+						</li>
+						<li class="fragment fade-up">
+							<p>Para cada arista (hay V -1 aristas), excluirla y volver a calcular el MST <span class="fragment fade-left">\(\leftarrow O(E)\)</span></p>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Orden de ejecución</h3>
+					<p>\[O(E \times log(V) \space + \space E \space + V \times E) = O(V \times E)\]</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Solución</h2>
+				</section>
+				<section>
+					<p>La solución se dispone programada en el lenguaje C++. La misma se ve modularizada mediante la programación de dos estructuras, con sus respectivos métodos, y un programa principal.</p>
+				</section>
+				<section>
+					<h3>Librerias y definición de Tipos</h3>
+					<pre><code class="cpp hljs" data-trim contenteditable>
+						#include &lt;iostream&gt;
+						#include &lt;string&gt;
+						#include &lt;vector&gt;
+						#include &lt;utility&gt;
+						#include &lt;algorithm&gt;
+
+						#define INF 1 &lt;&lt; 30
+						#define N 1000005
+
+						using namespace std;
+
+						typedef pair&lt;int, int&gt; ii;
+						typedef pair&lt;int, ii&gt; edge;
+
+						bool operator < (const edge a, const edge b){
+							return a.first < b.first;
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h3>Disjoint Set</h3>
+					<pre><code class="cpp hljs" data-trim contenteditable>
+						struct DisjointSet
+						{
+							int sets, *parents, *rank;
+
+							DisjointSet(int n)
+							{
+								int i;
+
+								sets = n;
+								parents = new int[n + 5];
+								rank = new int[n + 5];
+								for (i = 0; i <= n; i++) {
+								parents[i] = i;
+								rank[i] = 0;
+								}
+							}
+
+							int findSet(int x)
+							{
+								return (x == parents[x]) ? x : parents[x] = findSet(parents[x]);
+							}
+
+							bool isSameSet(int x, int y)
+							{
+								return findSet(x) == findSet(y);
+							}
+
+							void unionSet(int x, int y)
+							{
+								int xRoot = findSet(x), yRoot = findSet(y);
+
+								if (isSameSet(xRoot, yRoot)) {
+									return;
+								}
+
+								if (rank[xRoot] < rank[yRoot]) {
+									parents[xRoot] = yRoot;
+								} else if (rank[xRoot] > rank[yRoot]) {
+									parents[yRoot] = xRoot;
+								} else {
+									parents[yRoot] = xRoot;
+									rank[xRoot]++;
+								}
+
+								sets--;
+							}
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h3>Graph</h3>
+					<pre><code class="cpp hljs" data-trim contenteditable>
+						struct Graph
+						{
+							int V, E;
+							vector&lt;edge&gt; edges;
+
+							Graph(int V, int E)
+							{
+								this->V = V;
+								this->E = E;
+							}
+
+							void addEdge(int w, int a, int b)
+							{
+								edges.push_back(edge(w, ii(a, b)));
+							}
+
+							vector&lt;edge&gt; kruskal()
+							{
+								int i, w, from, to;
+								vector&lt;edge&gt; MST;
+
+								DisjointSet ds(V);
+								sort(edges.begin(), edges.end());
+
+								for(i = 0; i < edges.size(); i++) {
+									w = edges[i].first;
+									from = edges[i].second.first;
+									to = edges[i].second.second;
+
+									if (!ds.isSameSet(from, to)) {
+										MST.push_back(edge(w, ii(from, to)));
+										ds.unionSet(from, to);
+									}
+								}
+
+								return MST;
+							}
+
+							int kruskal_2(int O, int D)
+							{
+								int i, total = 0;
+
+								DisjointSet ds(V);
+
+								for (i = 0; i < edges.size(); i++) {
+									int from = edges[i].second.first;
+									int to = edges[i].second.second;
+
+									if (from == O &amp;&amp; to == D) {
+										continue;
+									}
+
+									if (!ds.isSameSet(from, to)) {
+										ds.unionSet(from, to);
+										total += edges[i].first;
+									}
+								}
+
+								if (ds.sets != 1) {
+									return INF;
+								}
+
+								return total;
+							}
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h3>Main</h3>
+					<pre><code class="cpp hljs" data-trim contenteditable>
+					int main()
+					{
+						int i, size, ans, TC, V, E, a, b, w, s1, s2;
+						vector&lt;edge&gt; MST;
+
+						cin >> TC;
+						while(TC--)
+						{
+							cin >> V >> E;
+
+							Graph graph(V, E);
+
+							for (i = 0; i < E; i++) {
+								cin >> a >> b >> w;
+								graph.addEdge(w, a, b);
+							}
+
+							MST = graph.kruskal();
+							s1 = 0, s2 = INF;
+							size = MST.size();
+
+							for (i = 0; i < size; i++) {
+								s1 += MST[i].first;
+							}
+
+							for (i = 0; i < size; i++) {
+								s2 = min(s2, graph.kruskal_2(MST[i].second.first, MST[i].second.second));
+							}
+
+							ans = s2 == INF ? s1 : s2;
+
+							cout << s1 << " " << ans << endl;
+						}
+
+						return 0;
+					}
+					</code></pre>
+				</section>
+				<section>
+					<h3>Solución en github</h3>
+					<p><a href="https://github.com/ulises-jeremias/Solutions/blob/master/uva.onlinejudge.org/ACMContestandBlackout.cpp">ACM Contest and Blackout</a></p>
+				</section>
 			</section>
 		</div>
 	</div>
