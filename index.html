@@ -8,7 +8,6 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="description" content="">
 	<meta name="author" content="Ulises Jeremias Cornejo Fandos">
-	<meta name="generator" content="reveal-ck 3.3.0">
 
 	<title>TTPS</title>
 
@@ -43,7 +42,9 @@
 				</section>
 				<section>
 					<h4>Ejercicio propuesto</h4>
-					<p class="fragment grow"><strong>ACM Contest and Blackout</strong></p>
+					<a target="_blank" href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1541">
+						<p class="fragment grow"><strong>ACM Contest and Blackout</strong></p>
+					</a>
 				</section>
 			</section>
 			<section>
@@ -55,10 +56,10 @@
 					<p>Un grafo \(G\) es un par ordenado \(G = (V, E)\) donde:</p>
 					<ul>
 						<li class="fragment fade-up">
-							<p>\(V\) es un conjunto de vértices <em>ó nodos</em></p>
+							\(V\) es un conjunto de vértices <em>ó nodos</em>
 						</li>
 						<li class="fragment fade-up">
-							<p>\(E\) es un conjunto de aristas <em>ó arcos</em> <small class="fragment grow">Permiten representar relaciones binarias entre elementos de \(V\).</small></p>
+							\(E\) es un conjunto de aristas <em>ó arcos</em> <small class="fragment fade-up">Permiten representar relaciones binarias entre elementos de \(V\).</small>
 						</li>
 					</ul>
 				</section>
@@ -66,7 +67,7 @@
 					<h3>Grafo no dirigido</h3>
 					<p>Un <em>grafo no dirigido</em> es un grafo \(G = (V, E)\) donde:</p>
 					<p class="fragment fade-up">\[ V \neq \emptyset \]</p>
-					<p class="fragment fade-up">\[ E \subseteq \{ x \in P(V) : |x| = 2 \} \] <small class="fragment grow">es un conjunto de pares no ordenados de elementos de \(V\)</small></p>
+					<p class="fragment fade-up">\[ E \subseteq \{ x \in P(V) : |x| = 2 \} \] <small class="fragment fade-up">es un conjunto de pares no ordenados de elementos de \(V\)</small></p>
 				</section>
 				<section>
 					<h3>Grafo conexo</h3>
@@ -79,8 +80,7 @@
 				<section>
 					<h3>Grafo ponderado</h3>
 					<p>Formalmente, dado un grafo \(G\), un vértice etiquetado es una función que hace corresponder vértices de G a un conjunto de etiquetas. Un grafo con tal función definida es llamado grafo de vértices etiquetados. De la misma manera, una arista etiquetada
-						es una función de asignación de aristas de G tal conjunto de «etiquetas». En este caso, G es llamado como grafo de aristas etiquetadas. Cuando las etiquetas de las aristas pertenecen a un conjunto ordenado ('es decir, los números reales), ésta puede
-						ser llamada como grafo ponderado.</p>
+						es una función de asignación de aristas de G tal conjunto de «etiquetas». En este caso, G es llamado como grafo de aristas etiquetadas. Cuando las etiquetas de las aristas pertenecen a un conjunto ordenado, ésta puede ser llamada como grafo ponderado.</p>
 				</section>
 			</section>
 			<section>
@@ -159,10 +159,10 @@
 					<p>Algoritmo de Kruskal</p>
 					<ul>
 						<li class="fragment fade-up">
-							<p>Ordena las \(E\) aristas en orden no decreciente según el peso.</p>
+							Ordena las \(E\) aristas en orden no decreciente según el peso.
 						</li>
 						<li class="fragment fade-up">
-							<p>Trata de agregar cada arista en el MST en orden, si no forma un ciclo.</p>
+							Trata de agregar cada arista en el MST en orden, si no forma un ciclo.</p>
 							<ul>
 								<li class="fragment fade-up">Utiliza UFDS</li>
 							</ul>
@@ -261,13 +261,13 @@
 					<p>En caso en que no funcione el MST, podemos buscar el segundo mejor.</p>
 					<ul>
 						<li class="fragment fade-up">
-							<p>Ordenar las aristas <span class="fragment fade-left">\(\leftarrow O(E \space log \space V)\)</span></p>
+							Ordenar las aristas <span class="fragment fade-left">\(\leftarrow O(E \space log \space V)\)</span>
 						</li>
 						<li class="fragment fade-up">
-							<p>Buscar el MST usando Kruskal <span class="fragment fade-left">\(\leftarrow O(E)\)</span></p>
+							Buscar el MST usando Kruskal <span class="fragment fade-left">\(\leftarrow O(E)\)</span>
 						</li>
 						<li class="fragment fade-up">
-							<p>Para cada arista (hay V -1 aristas), excluirla y volver a calcular el MST <span class="fragment fade-left">\(\leftarrow O(E)\)</span></p>
+							Para cada arista (hay V -1 aristas), excluirla y volver a calcular el MST <span class="fragment fade-left">\(\leftarrow O(E)\)</span>
 						</li>
 					</ul>
 				</section>
@@ -293,14 +293,14 @@
 						#include &lt;algorithm&gt;
 
 						#define INF 1 &lt;&lt; 30
-						#define N 1000005
 
 						using namespace std;
 
 						typedef pair&lt;int, int&gt; ii;
 						typedef pair&lt;int, ii&gt; edge;
 
-						bool operator < (const edge a, const edge b){
+						bool operator < (const edge a, const edge b)
+						{
 							return a.first < b.first;
 						}
 					</code></pre>
@@ -320,8 +320,8 @@
 								parents = new int[n + 5];
 								rank = new int[n + 5];
 								for (i = 0; i <= n; i++) {
-								parents[i] = i;
-								rank[i] = 0;
+									parents[i] = i;
+									rank[i] = 0;
 								}
 							}
 
@@ -340,7 +340,7 @@
 								int xRoot = findSet(x), yRoot = findSet(y);
 
 								if (isSameSet(xRoot, yRoot)) {
-									return;
+									return false;
 								}
 
 								if (rank[xRoot] < rank[yRoot]) {
@@ -353,6 +353,8 @@
 								}
 
 								sets--;
+
+								return true;
 							}
 						}
 					</code></pre>
@@ -389,16 +391,15 @@
 									from = edges[i].second.first;
 									to = edges[i].second.second;
 
-									if (!ds.isSameSet(from, to)) {
+									if (ds.unionSet(from, to)) {
 										MST.push_back(edge(w, ii(from, to)));
-										ds.unionSet(from, to);
 									}
 								}
 
 								return MST;
 							}
 
-							int kruskal_2(int O, int D)
+							int kruskal_2(int u, int v)
 							{
 								int i, total = 0;
 
@@ -408,12 +409,11 @@
 									int from = edges[i].second.first;
 									int to = edges[i].second.second;
 
-									if (from == O &amp;&amp; to == D) {
+									if (from == u &amp;&amp; to == v) {
 										continue;
 									}
 
-									if (!ds.isSameSet(from, to)) {
-										ds.unionSet(from, to);
+									if (ds.unionSet(from, to)) {
 										total += edges[i].first;
 									}
 								}
@@ -470,7 +470,7 @@
 				</section>
 				<section>
 					<h3>Solución en github</h3>
-					<p><a href="https://github.com/ulises-jeremias/Solutions/blob/master/uva.onlinejudge.org/ACMContestandBlackout.cpp">ACM Contest and Blackout</a></p>
+					<p><a target="_blank" href="https://github.com/ulises-jeremias/Solutions/blob/master/uva.onlinejudge.org/ACMContestandBlackout.cpp">ACM Contest and Blackout</a></p>
 				</section>
 			</section>
 		</div>
